@@ -1,0 +1,84 @@
+#include<iostream>
+	#include<string>
+	using namespace std;
+	
+	
+
+	class Table {
+	private:
+		int row;
+		int col;
+		int a[100][100];
+	public:
+		Table(int r=6,int c=6) {
+			row = r;
+			col = c;
+			for (int i = 0; i < r; i++)
+				for (int j = 0; j < c; j++)
+					a[i][j] =0;
+		}
+	
+
+		void addRow() {
+			for (int i = 0; i < col; i++)
+				a[row][i] = 0;
+			row++;
+		}
+	
+
+		void addColumn() {
+			for (int i = 0; i < row; i++)
+				a[i][col] = 0;
+			col++;
+		}
+	
+
+		void delRow(int r) {
+			if (r < row) {
+				for (int i = r - 1; i < row; i++) {
+					for (int j = 0; j < col; j++) {
+						a[i][j] = a[i + 1][j];
+					}
+				}
+			}
+			row--;
+	
+
+	void show() {
+			for (int i = 0; i < col; i++)
+				cout << i+1 << '\t';
+			cout << endl;
+			for (int i = 0; i < row; i++) {
+				for (int j = 0; j < col; j++)
+					cout << a[i][j] << '\t';
+				cout << endl;
+			}
+		}
+		}
+	
+
+		void set(int r, int c, int n) {
+			a[r - 1][c - 1] = n;
+		}
+	};
+	
+
+	int main() {
+		Table tb;
+		tb.show();
+		tb.addRow();
+		tb.show();
+		tb.addColumn();
+		tb.show();
+		Table tb1(5, 5);
+		tb1.show();
+		tb1.set(1, 1, 30);
+	
+	tb1.show();
+		tb1.delRow(1);
+		tb1.show();
+		tb1.delColumn(1);
+		tb1.show();
+		return 0;
+	}
+
